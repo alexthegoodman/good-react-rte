@@ -1,0 +1,8 @@
+{
+  "name": "good-react-rte",
+  "version": "1.0.0",
+  "description": "A rich text editor for multi-page documents",
+  "main": "index.js",
+  "author": "AlexTheGoodman",
+  "license": "MIT"
+}
