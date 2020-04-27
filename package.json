@@ -6,15 +6,36 @@
   "author": "AlexTheGoodman",
   "license": "MIT",
   "scripts": {
-    "storybook": "start-storybook"
+    "start": "yarn storybook",
+    "build": "yarn lint && yarn build-lib && build-storybook",
+    "build-lib-watch": "tsc -w",
+    "build-lib": "tsc && yarn copy-css-to-lib && yarn copy-svg-to-lib && yarn copy-png-to-lib && yarn copy-woff2-to-lib",
+    "test": "yarn test",
+    "test:coverage": "yarn test -- --coverage",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "copy-css-to-lib": "cpx \"./src/**/*.css\" ./build/lib",
+    "copy-woff2-to-lib": "cpx \"./src/**/*.woff2\" ./build/lib",
+    "copy-svg-to-lib": "cpx \"./src/**/*.svg\" ./build/lib",
+    "copy-png-to-lib": "cpx \"./src/**/*.png\" ./build/lib",
+    "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'"
   },
   "dependencies": {
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "@storybook/addon-info": "^5.3.18",
+    "@storybook/preset-typescript": "^3.0.0",
+    "@storybook/react": "^5.3.18",
     "babel-loader": "^8.1.0",
-    "@storybook/react": "^5.3.18"
+    "css-loader": "^3.5.3",
+    "react-docgen-typescript-loader": "^3.7.2",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.2.0",
+    "ts-loader": "^7.0.1",
+    "typescript": "^3.8.3"
   }
 }
