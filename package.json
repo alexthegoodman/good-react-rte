@@ -4,5 +4,17 @@
   "description": "A rich text editor for multi-page documents",
   "main": "index.js",
   "author": "AlexTheGoodman",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "storybook": "start-storybook"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "babel-loader": "^8.1.0",
+    "@storybook/react": "^5.3.18"
+  }
 }

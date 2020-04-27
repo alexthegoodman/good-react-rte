@@ -14,6 +14,11 @@ Inspiration: Quill, Draft, react-draft-wysiwyg, Slate
 
 ### Roadmap
 
+#### Tooling
+
+- Storybook
+- Cypress
+
 #### Features
 
 ##### Priority:
@@ -27,6 +32,7 @@ Inspiration: Quill, Draft, react-draft-wysiwyg, Slate
 - Text Editor
   - Multi-Page or Single-Page
   - Margins feature?
+  - 1 Page and Side-by-Side Pages views
   - Emojis
   - Standardized headers (1-6) and body text
 
