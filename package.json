@@ -10,7 +10,7 @@
     "build": "yarn lint && yarn build-lib && build-storybook",
     "build-lib-watch": "tsc -w",
     "build-lib": "tsc && yarn copy-css-to-lib && yarn copy-svg-to-lib && yarn copy-png-to-lib && yarn copy-woff2-to-lib",
-    "test": "yarn test",
+    "test": "yarn cypress:run",
     "test:coverage": "yarn test -- --coverage",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -18,7 +18,9 @@
     "copy-woff2-to-lib": "cpx \"./src/**/*.woff2\" ./build/lib",
     "copy-svg-to-lib": "cpx \"./src/**/*.svg\" ./build/lib",
     "copy-png-to-lib": "cpx \"./src/**/*.png\" ./build/lib",
-    "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'"
+    "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "dependencies": {
     "react": "^16.13.1",
@@ -32,6 +34,8 @@
     "@storybook/react": "^5.3.18",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.5.3",
+    "cypress": "^4.4.1",
+    "cypress-storybook": "^0.1.1",
     "react-docgen-typescript-loader": "^3.7.2",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.0",
