@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { Button } from '@storybook/react/demo';
+import BaseEditor from 'components/BaseEditor/BaseEditor';
 
-export default { title: 'Button' };
+export default { title: 'Editor' };
 
-export const withText = () => <Button>Hello Button</Button>;
-
-export const withEmoji = () => (
-  <Button>
-    <span role="img" aria-label="so cool">
-      😀 😎 👍 💯
-    </span>
-  </Button>
-);
+export const defaultRTE = ({
+  disabled = false
+}) => {
+  return (
+    <div>
+      <BaseEditor />
+    </div>
+  );
+};
