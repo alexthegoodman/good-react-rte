@@ -1,9 +1,8 @@
 import { ReactElement } from "react";
 
-export interface BaseEditorProps {
+export interface CursorProps {
   ref?: React.Ref<any>;
   className?: string;
   onClick?: (e: MouseEvent) => void;
-  disable?: boolean;
-  onChange?: (val: any) => void;
+  visible?: boolean;
 }

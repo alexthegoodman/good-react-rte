@@ -1,6 +1,8 @@
 import * as React from 'react';
 import BaseEditor from 'components/BaseEditor/BaseEditor';
 
+import "./index.scss";
+
 export default { title: 'Editor' };
 
 export const defaultRTE = ({

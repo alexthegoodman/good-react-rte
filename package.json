@@ -23,10 +23,14 @@
     "cypress:run": "cypress run"
   },
   "dependencies": {
+    "content-editable-formatter": "^2.2.0",
+    "node-sass": "^4.14.0",
     "react": "^16.13.1",
     "react-contenteditable": "^3.3.4",
     "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1"
+    "react-scripts": "^3.4.1",
+    "sanitize-html": "^1.23.0",
+    "use-key-hook": "^1.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
