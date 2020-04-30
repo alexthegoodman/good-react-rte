@@ -67,10 +67,16 @@ const BaseEditor: React.FC<BaseEditorProps> = ({
     return sanitize(value);
   };
 
+  // TODO: cause too many renders on each key stroke? (2+)
   useKey((pressedKey: any, event: any) => {
-    setHtml((html: string) => {
-      return triggerChange(html, event.key);
-    });
+    setBlur((blur: boolean) => {
+      if (blur) {
+        setHtml((html: string) => {
+          return triggerChange(html, event.key);
+        });
+      }
+      return blur;
+    })
   });
 
   return (

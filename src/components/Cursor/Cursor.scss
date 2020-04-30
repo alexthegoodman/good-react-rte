@@ -1,0 +1,39 @@
+.cursorWrapper, .cursor {
+    width: 2px;
+    height: $size4;
+}
+
+.cursorWrapper {
+    display: inline-block;
+    position: relative;
+}
+
+.cursor {
+    background: black;
+    animation-duration: $time2;
+    animation-name: flicker;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 0;
+        transition: all $time1;
+    }
+
+    25% {
+        opacity: 0.8;
+        transition: all $time1;
+    }
+
+    50% {
+        opacity: 0;
+        transition: all $time1;
+    }
+
+    100% {
+        opacity: 0;
+        transition: all $time1;
+    }
+}

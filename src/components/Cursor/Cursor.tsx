@@ -8,7 +8,18 @@ const Cursor: React.FC<CursorProps> = ({
   onClick = () => console.info("Click"),
   visible = false
 }) => {
-  return visible ? <span>|</span> : <></>;
+  let render = <></>;
+  if (visible) {
+    render = (
+      <div className="cursor"></div>
+    );
+  }
+
+  return (
+    <div className="cursorWrapper">
+      {render}
+    </div>
+  );
 };
 
 export default Cursor;

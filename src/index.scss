@@ -1,1 +1,13 @@
+$time1: 0.2s;
+$time2: 2s;
+
+$size1: 8px;
+$size2: 12px;
+$size3: 14px;
+$size4: 16px;
+$size5: 18px;
+$size6: 20px;
+$size7: 24px;
+
 @import "./components/BaseEditor/BaseEditor.scss";
+@import "./components/Cursor/Cursor.scss";
