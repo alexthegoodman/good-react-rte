@@ -5,6 +5,7 @@ import { BaseEditorProps } from "./BaseEditor.d";
 import * as useKey from 'use-key-hook';
 import Cursor from "components/Cursor/Cursor";
 import { useSanitize } from "hooks/useSanitize";
+import { useParseText } from "hooks/useParseText";
 
 const BaseEditor: React.FC<BaseEditorProps> = ({
   ref = null,
@@ -14,25 +15,18 @@ const BaseEditor: React.FC<BaseEditorProps> = ({
   onChange = val => console.info("good-react-rte onChange", val)
 }) => {
   const editableRef = React.useRef(null);
-  const [html, setHtml] = React.useState("");
   const [blur, setBlur] = React.useState(false);
-  const {sanitized, encoded} = useSanitize(html, onChange);
-
-  const triggerChange = (html: string, newKey: string) => {
-    // Insert new char in correct spot
-    const value = html + newKey;
-
-    // Clean HTML output
-    return value;
-  };
+  const {sanitized, encoded, json, makeJson} = useParseText("", onChange);
+  // TODO: jsonToText?
 
   // TODO: cause too many renders on each key stroke? (2+)
-  useKey((pressedKey: any, event: any) => {
+  useKey((pressedKey: any, event: KeyboardEvent) => {
+    event.stopPropagation();
+    event.preventDefault();
+    
     setBlur((blur: boolean) => {
       if (blur) {
-        setHtml((html: string) => {
-          return triggerChange(html, event.key);
-        });
+        makeJson(sanitized, event.key);
       }
       return blur;
     })
