@@ -1,13 +1,19 @@
 $time1: 0.2s;
 $time2: 2s;
 
-$size1: 8px;
-$size2: 12px;
-$size3: 14px;
-$size4: 16px;
-$size5: 18px;
-$size6: 20px;
-$size7: 24px;
+$size1: 12px;
+$size2: 14px;
+$size3: 16px;
+$size4: 18px;
+$size5: 24px;
+$size6: 32px;
+$size7: 48px;
 
 @import "./components/BaseEditor/BaseEditor.scss";
 @import "./components/Cursor/Cursor.scss";
+
+body, html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility; // geometricPrecision
+}

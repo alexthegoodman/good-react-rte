@@ -1,8 +1,15 @@
 .baseEditorWrapper {
     .baseEditor {
         width: 100%;
-        border: 1px grey solid;
+        border: 2px #E5E5E5 solid;
         padding: 10px;
-        font-size: $size4;
+        border-radius: 3px;
+
+        h1, h2, h3, h4, h5, h6 {}
+        p, a, span {
+            font-size: $size4;
+            line-height: $size4 * 1.2;
+            letter-spacing: 1px;
+        }
     }
 }

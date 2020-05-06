@@ -2,20 +2,9 @@ import * as React from "react";
 
 import { BaseEditorProps } from "./BaseEditor.d";
 
-import {
-  removeNonBreakingSpaces,
-  removeEmptyEmphasisElements,
-  removeEmptyParagraphElements,
-  removeEmptyStrongElements,
-  removeLeadingBrElements,
-  removeTrailingBrElements,
-  transformString
-} from 'content-editable-formatter';
 import * as useKey from 'use-key-hook';
 import Cursor from "components/Cursor/Cursor";
-// import ContentEditable, { ContentEditableEvent } from 'react-contenteditable';
-
-const sanitizeHtml = require('sanitize-html');
+import { useSanitize } from "hooks/useSanitize";
 
 const BaseEditor: React.FC<BaseEditorProps> = ({
   ref = null,
@@ -27,44 +16,14 @@ const BaseEditor: React.FC<BaseEditorProps> = ({
   const editableRef = React.useRef(null);
   const [html, setHtml] = React.useState("");
   const [blur, setBlur] = React.useState(false);
-
-  const sanitize = (value: string) => {
-    let sanitizedValue = "";
-    if (typeof value !== "undefined") {
-      sanitizedValue = transformString(value)(
-        removeNonBreakingSpaces,
-        removeEmptyEmphasisElements,
-        removeEmptyParagraphElements,
-        removeEmptyStrongElements,
-        removeLeadingBrElements,
-        removeTrailingBrElements
-      );
-
-      sanitizedValue = sanitizeHtml(sanitizedValue, {
-        allowedTags: [ 'b', 'i', 'em', 'strong', 'a' ],
-        allowedAttributes: {
-          'a': [ 'href' ]
-        },
-        allowedIframeHostnames: ['www.youtube.com']
-      });
-
-      const encodedValue = encodeURI(sanitizedValue);
-      
-      onChange({
-        sanitized: sanitizedValue,
-        encoded: encodedValue
-      });
-    }
-
-    return sanitizedValue;
-  }
+  const {sanitized, encoded} = useSanitize(html, onChange);
 
   const triggerChange = (html: string, newKey: string) => {
     // Insert new char in correct spot
     const value = html + newKey;
 
     // Clean HTML output
-    return sanitize(value);
+    return value;
   };
 
   // TODO: cause too many renders on each key stroke? (2+)
@@ -89,7 +48,7 @@ const BaseEditor: React.FC<BaseEditorProps> = ({
           height: 150
         }}
       >
-        {html}
+        {sanitized}
         <Cursor 
           visible={blur}
         />

@@ -9,7 +9,9 @@ export const defaultRTE = ({
   disabled = false
 }) => {
   return (
-    <div>
+    <div style={{
+      maxWidth: "500px"
+    }}>
       <BaseEditor />
     </div>
   );

@@ -19,6 +19,7 @@ Inspiration: Quill, Draft, react-draft-wysiwyg, Slate
 - Storybook
 - Cypress
 - cypress-storybook (no need for webpack-dev-server)
+- Look into performance testing
 
 #### Features
 
