@@ -16,7 +16,7 @@ export const useSanitize = (
   defaultValue = "",
   onChange = (data) => console.info("sanitize", data),
 ) => {
-  const [value, setValue] = React.useState(defaultValue);
+  const [value, setValue] = useState(defaultValue);
 
   let sanitizedValue = "";
   let encodedValue = "";
