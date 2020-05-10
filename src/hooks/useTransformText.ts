@@ -21,12 +21,12 @@ interface TextNode {
     }
 }
 
-export const useParseText = (
+export const useTransformText = (
   defaultText = "",
   onChange = (data) => console.info("sanitize", data),
 ) => {
   const [json, setJson] = useState(null);
-  const {sanitized, encoded} = useSanitize("", onChange);
+  const {sanitized, encoded, setText} = useSanitize(defaultText, onChange);
 
   let tmpJson = {};
   const makeJson = (value, key): DocumentJson => {

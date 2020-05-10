@@ -13,12 +13,14 @@ import {
 const sanitizeHtml = require('sanitize-html');
 
 export const useSanitize = (
-  value = "",
+  defaultValue = "",
   onChange = (data) => console.info("sanitize", data),
 ) => {
+  const [value, setValue] = React.useState(defaultValue);
+
   let sanitizedValue = "";
   let encodedValue = "";
-  if (typeof value !== "undefined") {
+  if (typeof value !== "undefined" && value !== "") {
     sanitizedValue = transformString(value)(
       removeNonBreakingSpaces,
       removeEmptyEmphasisElements,
@@ -44,8 +46,13 @@ export const useSanitize = (
     });
   }
 
+  const setText = (text: string) => {
+    setValue(text);
+  };
+
   return {
     sanitized: sanitizedValue,
-    encoded: encodedValue
+    encoded: encodedValue,
+    setText
   };
 };
