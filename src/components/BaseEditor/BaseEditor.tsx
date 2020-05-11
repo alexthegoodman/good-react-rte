@@ -5,6 +5,7 @@ import { BaseEditorProps } from "./BaseEditor.d";
 import * as useKey from 'use-key-hook';
 import Cursor from "components/Cursor/Cursor";
 import { useSanitize } from "hooks/useSanitize";
+import { HotKeys } from "react-hotkeys";
 import { useTransformText } from "hooks/useTransformText";
 
 const BaseEditor: React.FC<BaseEditorProps> = ({
@@ -16,22 +17,20 @@ const BaseEditor: React.FC<BaseEditorProps> = ({
 }) => {
   const editableRef = React.useRef(null);
   const [blur, setBlur] = React.useState(false);
-  const {
-    sanitized, 
-    encoded, 
+  const { 
     json, 
-    makeJson
+    setTransformText
   } = useTransformText("", onChange);
-  // TODO: jsonToText?
 
   // TODO: cause too many renders on each key stroke? (2+)
+  // possibly debounce some heavier processing?
   useKey((pressedKey: any, event: KeyboardEvent) => {
     event.stopPropagation();
     event.preventDefault();
     
     setBlur((blur: boolean) => {
       if (blur) {
-        makeJson(sanitized, event.key);
+        setTransformText(event.key);
       }
       return blur;
     })
@@ -47,7 +46,7 @@ const BaseEditor: React.FC<BaseEditorProps> = ({
           height: 150
         }}
       >
-        {sanitized}
+        {json.cache.html}
         <Cursor 
           visible={blur}
         />
