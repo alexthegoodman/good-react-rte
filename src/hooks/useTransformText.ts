@@ -8,6 +8,7 @@ export const useTransformText = (
     defaultText = "",
     onChange = (data) => console.info("sanitize", data),
 ) => {
+    const [currentTextNodeId, setCurrentTextNodeId] = useState<string | null>(null);
     const [json, setJson] = useState<DocumentJson>({
         cache: {
             plainText: "",
@@ -24,6 +25,7 @@ export const useTransformText = (
 
         const transformText = new TransformText(json);
 
+        let newJson: Partial<DocumentJson> = {};
         switch (key) {
             case "Alt" || "Control" || "Meta" || "Escape" || "Shift" || "CapsLock": // use react-hotkeys
                 break;
@@ -34,28 +36,39 @@ export const useTransformText = (
                 break;
             case "Space" || " ":
                 // New TextNode
+                const altJson = transformText.addTextNode({
+                    word: key
+                });
+
+                const { textNodes } = altJson;
+
+                if (textNodes !== null) {
+                    setCurrentTextNodeId(textNodes[textNodes.length - 1].id);
+                }
+
+                newJson = _.merge(altJson, newJson);
+                
                 break;
             case "Tab":
                 // Indent
                 break;
             case "Enter":
                 // New paragraph 
-                transformText.addTextNode({
-                    word: key
-                });           
+                           
                 break;
             default:
                 // Extend current TextNode
                 break;
         }
 
-        const tmpJson = {
+        const tmpJson: DocumentJson = {
             cache: {
                 plainText: transformText.sanitizeHtmlString(json.cache.plainText).sanitized, // json2PlainText
                 html: transformText.sanitizeHtmlString(json.cache.html).sanitized // json2Html
             },
             nodeTree: null, // getTreeByNodeId, updateTreeByNodeId
-            textNodes: null // getTextNodeByPos, getTextNodeById, updateTextNodeById, addTextNode
+            textNodes: null, // getTextNodeByPos, getTextNodeById, updateTextNodeById, addTextNode
+            ...newJson
         };
 
         // TODO: json2Md, json2ReactNative

@@ -61,32 +61,32 @@ export default class TransformText {
         return tmpJson;
     }
     
-    getTreeByNodeId(id: string) {
+    getTreeByNodeId(id: string): DocumentJson {
         let tmpJson = this.json;
         return tmpJson;
     }
     
-    updateTreeByNodeId(id, treeProps: NodeTree) {
+    updateTreeByNodeId(id, treeProps: NodeTree): DocumentJson {
         let tmpJson = this.json;
         return tmpJson;
     }
     
-    getTextNodeByPos(pos: number) {
+    getTextNodeByPos(pos: number): DocumentJson {
         let tmpJson = this.json;
         return tmpJson;
     }
     
-    getTextNodeById(id: string) {
+    getTextNodeById(id: string): DocumentJson {
         let tmpJson = this.json;
         return tmpJson;
     }
     
-    updateTextNodeById(id, nodeProps: TextNode) {
+    updateTextNodeById(id, nodeProps: TextNode): DocumentJson {
         let tmpJson = this.json;
         return tmpJson;
     }
     
-    addTextNode(nodeProps: Partial<TextNode>) {
+    addTextNode(nodeProps: Partial<TextNode>): DocumentJson {
         let tmpJson = _.cloneDeep(this.json);
         if (tmpJson.textNodes !== null) {
             tmpJson.textNodes[tmpJson.textNodes.length] = {
