@@ -1,19 +1,8 @@
 import React, { useState, useEffect, createContext } from "react";
 import { useSanitize } from "./useSanitize";
 
-import {
-    removeNonBreakingSpaces,
-    removeEmptyEmphasisElements,
-    removeEmptyParagraphElements,
-    removeEmptyStrongElements,
-    removeLeadingBrElements,
-    removeTrailingBrElements,
-    transformString
-} from 'content-editable-formatter';
-  
-const sanitizeHtml = require('sanitize-html');
-
 import * as _ from "lodash";
+import TransformText from "services/TransformText";
 
 export const useTransformText = (
     defaultText = "",
@@ -28,41 +17,12 @@ export const useTransformText = (
         textNodes: null
     });
 
-    const sanitizeHtmlString = (value) => {
-        let sanitizedValue = "";
-        let encodedValue = "";
-
-        if (typeof value !== "undefined" && value !== "") {
-            sanitizedValue = transformString(value)(
-                removeNonBreakingSpaces,
-                removeEmptyEmphasisElements,
-                removeEmptyParagraphElements,
-                removeEmptyStrongElements,
-                removeLeadingBrElements,
-                removeTrailingBrElements
-            );
-
-            sanitizedValue = sanitizeHtml(sanitizedValue, {
-                allowedTags: [ 'b', 'i', 'em', 'strong', 'a' ],
-                allowedAttributes: {
-                    'a': [ 'href' ]
-                },
-                allowedIframeHostnames: ['www.youtube.com']
-            });
-
-            encodedValue = encodeURI(sanitizedValue);
-        }
-
-        return {
-            sanitized: sanitizedValue,
-            encoded: encodedValue
-        };
-    }
-
-    const setTransformText = (key) => {        
+    const setTransformText = (key: string) => {        
         // determine whether to alter or add TextNode
         // determine where to reference the TextNode
         // do not update cache? if I do, I must do json2Html here also
+
+        const transformText = new TransformText(json);
 
         switch (key) {
             case "Alt" || "Control" || "Meta" || "Escape" || "Shift" || "CapsLock": // use react-hotkeys
@@ -79,7 +39,10 @@ export const useTransformText = (
                 // Indent
                 break;
             case "Enter":
-                // New paragraph            
+                // New paragraph 
+                transformText.addTextNode({
+                    word: key
+                });           
                 break;
             default:
                 // Extend current TextNode
@@ -88,8 +51,8 @@ export const useTransformText = (
 
         const tmpJson = {
             cache: {
-                plainText: sanitizeHtmlString(json.cache.plainText).sanitized, // json2PlainText
-                html: sanitizeHtmlString(json.cache.html).sanitized // json2Html
+                plainText: transformText.sanitizeHtmlString(json.cache.plainText).sanitized, // json2PlainText
+                html: transformText.sanitizeHtmlString(json.cache.html).sanitized // json2Html
             },
             nodeTree: null, // getTreeByNodeId, updateTreeByNodeId
             textNodes: null // getTextNodeByPos, getTextNodeById, updateTextNodeById, addTextNode
