@@ -58,6 +58,7 @@ export const useTransformText = (
                 break;
             default:
                 // Extend current TextNode
+                
                 break;
         }
 
@@ -70,6 +71,8 @@ export const useTransformText = (
             textNodes: null, // getTextNodeByPos, getTextNodeById, updateTextNodeById, addTextNode
             ...newJson
         };
+
+        console.info("setTransformText", key, transformText, newJson, tmpJson);
 
         // TODO: json2Md, json2ReactNative
         // TODO: SpaCy, ML prep
