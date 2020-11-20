@@ -22,17 +22,36 @@ An object containing a single word (token)
 ```
 const ExampleDocument: DocumentJson = {
     cache: {
-        plainText: "test placeholder",
-        html: "<p>test <strong>placeholder</strong></p>"
+        plainText: "test words placeholder more to say here",
+        html: "<p>test words <strong>placeholder</strong></p><p>more to <em>say here</em></p>"
     },
     nodeTree: [
-        "123", 
         {
-            effect: ["bold"],
-            subTree: ["456"]
+            object: ["paragraph"],
+            subTree: [
+              "123",
+              "456",
+              { effect: "bold", subTree: ["789"] }
+            ]
+        },
+        {
+            object: ["paragraph"],
+            subTree: [
+              "135",
+              "794",
+              { effect: "italic", subTree: ["243", "874"] }
+            ]
         }
     ],
-    textNodes: [{ id: "123", token: "test" }, { id: "456", token: "placeholder" }]
+    textNodes: [
+      { id: "123", token: "test" }, 
+      { id: "456", token: "words" },
+      { id: "789", token: "placeholder" },
+      { id: "135", token: "more" },
+      { id: "794", token: "to" },
+      { id: "243", token: "say" },
+      { id: "874", token: "here" }
+    ]
 };
 ```
 
