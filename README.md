@@ -92,8 +92,10 @@ const ExampleDocument: DocumentJson = {
 - Formatting menu (some needed)
   - Text changes (font size, line height)
   - Text layout (columns)
-- Insert menu (charts, tables, etc)
+- Insert menu (charts, tables, page break, etc)
 - Tools and Help menus
+- Auto-save
+- Drafts
 
 ## Contributing
 

@@ -1,3 +1,6 @@
 {
-    "video": false
+    "video": false,
+    "ignoreTestFiles": "*.ts",
+    "testFiles": "**/*.feature",
+    "baseUrl": "http://localhost:3000"
 }

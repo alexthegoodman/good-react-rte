@@ -91,7 +91,7 @@ export default class TransformText {
         if (tmpJson.textNodes !== null) {
             tmpJson.textNodes[tmpJson.textNodes.length] = {
                 id: uuidv4(),
-                word: "",
+                token: "",
                 ...nodeProps
             }
         }

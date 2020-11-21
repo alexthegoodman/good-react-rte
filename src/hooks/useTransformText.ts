@@ -37,7 +37,7 @@ export const useTransformText = (
             case "Space" || " ":
                 // New TextNode
                 const altJson = transformText.addTextNode({
-                    word: key
+                    token: key
                 });
 
                 const { textNodes } = altJson;

@@ -41,5 +41,5 @@ interface NodeTree {
 
 interface TextNode {
     id: TextNodeId;
-    word: string;
+    token: string;
 }

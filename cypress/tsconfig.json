@@ -4,9 +4,9 @@
         "baseUrl": "../node_modules",
         "target": "es5",
         "lib": ["es5", "dom"],
-        "types": ["cypress", "cypress-storybook/cypress"]
+        "types": ["node", "cypress", "cypress-storybook/cypress"]
     },
     "include": [
-        "**/*.ts", "plugins/index.js"
+        "**/*.ts", "plugins/index.ts"
     ]
 }
