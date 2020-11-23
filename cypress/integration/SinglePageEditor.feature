@@ -1,0 +1,1 @@
+Feature: Single Page Editor

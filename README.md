@@ -74,18 +74,26 @@ const ExampleDocument: DocumentJson = {
 
 ### Priority
 
-- File menu (some needed)
-  - "Save" (send data out via event handler)
-  - Print
-- Edit menu
-  - Undo
-  - Redo
-- Text Editor
-  - Multi-Page or Single-Page
-  - Margins feature?
-  - 1 Page and Side-by-Side Pages views
-  - Emojis
-  - Standardized headers (1-6) and body text
+File menu (some needed)
+- "Save" (send data out via event handler)
+- Print
+
+Edit menu
+- Undo
+- Redo
+
+Font menu
+- Standardized headers (1-6) 
+- Paragraphs
+- Lists (bullet and number)
+- Effects (bold, italic)
+- Alignment
+
+Text Editor
+- Multi-Page or Single-Page
+- Emojis
+- Keyboard shortcuts
+- Accessibility
 
 ### Roadmap
 
@@ -93,6 +101,7 @@ const ExampleDocument: DocumentJson = {
   - Text changes (font size, line height)
   - Text layout (columns)
 - Insert menu (charts, tables, page break, etc)
+- Cut, copy, paste
 - Tools and Help menus
 - Auto-save
 - Drafts
